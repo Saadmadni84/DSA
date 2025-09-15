@@ -7,7 +7,6 @@ class checkpalindrome {
         {
             return false;
         }
-
         while (temp!= 0) {
             int remainder = temp % 10;
             reversed = reversed * 10 + remainder;
