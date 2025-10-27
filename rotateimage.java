@@ -1,5 +1,4 @@
 
-
 public class rotateimage {
     public static void rotate(int [][] a){
         int l=a.length;

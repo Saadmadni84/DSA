@@ -1,5 +1,4 @@
 import java.util.Arrays;
-//shivanshipglnahihai
 public class matrixmedian {
     public static int medianm(int [][] a){
       int c=a.length;

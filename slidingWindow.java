@@ -7,11 +7,13 @@ public class slidingWindow {
              temp=max;     
         }
         for(int i=k;i<a.length;i++){
-            max=max+a[i]-a[i-k];
+            max=max+a[i]-a[i-k];// Add new, remove old
+        if (windowSum > maxSum) {
             if(max>temp){
                 temp=max;
             }
         }
+    }
         return temp;
 
     }
