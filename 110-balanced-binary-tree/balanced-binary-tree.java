@@ -14,25 +14,24 @@
  * }
  */
 class Solution {
-    // Helper method: returns height if balanced, else -1
+    
     private int mdepth(TreeNode node) {
         if (node == null) return 0;
 
         int left = mdepth(node.left);
-        if (left == -1) return -1; // left subtree not balanced
+        if (left == -1) 
+        return -1; 
 
         int right = mdepth(node.right);
-        if (right == -1) return -1; // right subtree not balanced
 
-        // If height difference > 1, not balanced
+        if (right == -1) return -1; 
+
         if (Math.abs(left - right) > 1) return -1;
-
-        // Return height of current node
+ 
         return Math.max(left, right) + 1;
     }
 
     public boolean isBalanced(TreeNode root) {
-        // Tree is balanced if mdepth(root) doesn't return -1
         return mdepth(root) != -1;
     }
 }
