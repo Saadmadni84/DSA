@@ -1,61 +1,51 @@
+import java.util.*;
+
 class Solution {
-    int count = 0;
-
-    public void backtrack(int row,
-                          Set<Integer> cols,
-                          Set<Integer> diags,
-                          Set<Integer> antiDiags,
-                          int n) {
-
-       
-        if (row == n) {
-            count++;
-            return;
+    public int totalNQueens(int n) {
+        char[][] board = new char[n][n];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(board[i], '.');
         }
 
-        for (int col = 0; col < n; col++) {
-
-          
-            if (cols.contains(col)) {
-                continue;
-            }
-
-           
-            int diag = row - col;
-            if (diags.contains(diag)) {
-                continue;
-            }
-
-           
-            int antiDiag = row + col;
-            if (antiDiags.contains(antiDiag)) {
-                continue;
-            }
-
-           
-            cols.add(col);
-            diags.add(diag);
-            antiDiags.add(antiDiag);
-
-            
-            backtrack(row + 1, cols, diags, antiDiags, n);
-
-           
-            cols.remove(col);
-            diags.remove(diag);
-            antiDiags.remove(antiDiag);
-        }
+        return backtrack(0, board, n);
     }
 
-    public int totalNQueens(int n) {
-        count = 0;
+    private int backtrack(int row, char[][] board, int n) {
+       
+        if (row == n) {
+            return 1;
+        }
 
-        Set<Integer> cols = new HashSet<>();
-        Set<Integer> diags = new HashSet<>();
-        Set<Integer> antiDiags = new HashSet<>();
+        int count = 0;
 
-        backtrack(0, cols, diags, antiDiags, n);
+        for (int col = 0; col < n; col++) {
+            if (isSafe(board, row, col, n)) {
+                board[row][col] = 'Q';           
+                count += backtrack(row + 1, board, n); 
+                board[row][col] = '.';          
+            }
+        }
 
         return count;
+    }
+
+    private boolean isSafe(char[][] board, int row, int col, int n) {
+
+       
+        for (int i = 0; i < row; i++) {
+            if (board[i][col] == 'Q') return false;
+        }
+
+       
+        for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 'Q') return false;
+        }
+
+        
+        for (int i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
+            if (board[i][j] == 'Q') return false;
+        }
+
+        return true;
     }
 }
