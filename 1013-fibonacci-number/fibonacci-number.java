@@ -1,0 +1,21 @@
+class Solution {
+    //mem=memoization
+    private int helper(int n,int [] mem){
+        if(n<=1){
+            return n;
+        }
+        mem[n]=helper(n-1,mem)+helper(n-2,mem);
+        return mem[n];
+    }
+    public int fib(int n) {
+      if(n<=1){
+        return n;
+      } 
+      int [] mem=new int[n+1];
+      for(int i=0;i<=n;i++) {
+        mem[i]=-1;
+      }
+      helper(n,mem);
+      return mem[n];
+    }
+}
