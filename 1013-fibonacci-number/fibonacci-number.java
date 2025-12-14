@@ -4,6 +4,9 @@ class Solution {
         if(n<=1){
             return n;
         }
+        if(mem[n]!=-1){
+            return mem[n];
+        }
         mem[n]=helper(n-1,mem)+helper(n-2,mem);
         return mem[n];
     }
