@@ -1,24 +1,14 @@
 class Solution {
-    //mem=memoization
-    private int helper(int n,int [] mem){
-        if(n<=1){
-            return n;
-        }
-        if(mem[n]!=-1){
-            return mem[n];
-        }
-        mem[n]=helper(n-1,mem)+helper(n-2,mem);
-        return mem[n];
-    }
     public int fib(int n) {
       if(n<=1){
         return n;
       } 
       int [] mem=new int[n+1];
-      for(int i=0;i<=n;i++) {
-        mem[i]=-1;
+      mem[0]=0;
+      mem[1]=1;
+      for(int i=2;i<=n;i++) {
+        mem[i]=mem[i-1]+mem[i-2];
       }
-      helper(n,mem);
       return mem[n];
     }
 }
