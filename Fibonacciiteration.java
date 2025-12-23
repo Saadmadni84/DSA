@@ -12,3 +12,4 @@ class Solution {
       return mem[n];
     }
 }
+//it reduces space also
