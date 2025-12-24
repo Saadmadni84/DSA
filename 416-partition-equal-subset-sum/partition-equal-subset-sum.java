@@ -1,29 +1,29 @@
 class Solution {
-
-    private boolean helper(int[] nums, int target, int i, Boolean[][] dp) {
-
-        if (target == 0) return true;
-        if (i == nums.length || target < 0) return false;
-
-        if (dp[i][target] != null) {
-            return dp[i][target];
-        }
-
-        boolean take = helper(nums, target - nums[i], i + 1, dp);
-        boolean notTake = helper(nums, target, i + 1, dp);
-
-        return dp[i][target] = take || notTake;
-    }
-
     public boolean canPartition(int[] nums) {
+        int n=nums.length;
         int sum = 0;
         for (int num : nums) sum += num;
 
         if (sum % 2 != 0) return false;
 
         int target = sum / 2;
-        Boolean[][] dp = new Boolean[nums.length][target + 1];
+        Boolean[][] dp = new Boolean[n+1][target + 1];
+        for(int i=0;i<=n;i++){
+            dp[i][0]=true;
+        }
+        for(int j=1;j<=target;j++){
+            dp[0][j]=false;
+        }
+        for(int i=1;i<=n;i++){
+           for(int j=1;j<=target;j++){
+                if (nums[i - 1] <= j) {
+                    dp[i][j] = dp[i - 1][j - nums[i - 1]] || dp[i - 1][j];
+                } else {
+                    dp[i][j] = dp[i - 1][j];
+                }
+                 }
+             }
 
-        return helper(nums, target, 0, dp);
+        return dp[n][target];
     }
 }
