@@ -17,6 +17,9 @@ class Solution {
         }
         if(p.charAt(j)=='*'){
            return  helper(s,p,i,j+1) || helper(s,p,i+1,j);
+
+            //1.Skip * in pattern and move to next character in pattern
+            //2.Consume one character from s, but keep * in pattern to possibly match more
         }
         return false;
     }
