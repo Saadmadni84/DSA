@@ -6,7 +6,7 @@ class Solution {
         if(j<0){
             return false;
         }
-        if(i<0){
+        if(i<0){p
             if (p.charAt(j) == '*') {
                 return helper(s, p, i, j - 2);
             }
