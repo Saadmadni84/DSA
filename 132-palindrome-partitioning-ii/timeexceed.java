@@ -1,0 +1,36 @@
+class Solution {
+    public int minCut(String s) {
+        int n = s.length();
+        int[][] dp = new int[n][n];
+
+        for (int l = 1; l <= n; l++) {
+            for (int i = 0; i <= n - l; i++) {
+                int j = i + l - 1;
+
+                if (i == j) {
+                    dp[i][j] = 0;
+                }
+                else if (j == i + 1) {
+                    dp[i][j] = (s.charAt(i) == s.charAt(j) ? 0 : 1);
+                }
+                else {
+                    // check if i..j is a palindrome
+                    if (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1] == 0) {
+                        dp[i][j] = 0;
+                    }
+                    else {
+                        // start putting cuts
+                        dp[i][j] = j - i;
+                        for (int k = i; k < j; k++) {
+                            dp[i][j] = Math.min(
+                                dp[i][j],
+                                1 + dp[i][k] + dp[k + 1][j]
+                            );
+                        }
+                    }
+                }
+            }
+        }
+        return dp[0][n - 1];
+    }
+}
