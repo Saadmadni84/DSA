@@ -1,22 +1,17 @@
 class Solution {
     public boolean check(int[] nums) {
+        int drops = 0;
         int n = nums.length;
 
-        for (int s = 0; s < n; s++) {
-            boolean isSorted = true;   
-            for (int i = 0; i < n - 1; i++) {
-                int current = nums[(s + i) % n];
-                int next = nums[(s + i + 1) % n];
-                
-                if (current > next) {
-                    isSorted = false;
-                    break;
-                }
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > nums[(i + 1) % n]) {
+                drops++;
             }
-            
-            if (isSorted) return true;
+            if (drops > 1) {
+                return false;
+            }
         }
-        
-        return false;
+
+        return true;
     }
 }
