@@ -10,14 +10,15 @@ class Solution {
                c++;   
             }
             else{
+                if(c>m){
+                m=c;
+               }
                 c=0;
             }
             i++;
-            if(c>m){
-                m=c;
-               }
+            
     
         }
-        return m;
+        return Math.max(m,c);
     }
 }
