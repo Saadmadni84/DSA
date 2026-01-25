@@ -1,7 +1,6 @@
 class Solution {
     public int maxProduct(int[] nums) {
         if (nums.length == 0) return 0;
-
         int res = nums[0];
         int curMax = nums[0];
         int curMin = nums[0];
