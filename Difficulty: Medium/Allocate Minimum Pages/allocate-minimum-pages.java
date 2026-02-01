@@ -1,0 +1,39 @@
+class Solution {
+    public int findPages(int[] nums, int k) {
+        if(k>nums.length){
+            return -1;
+        }
+        int left = 0;
+        int right = 0;
+        for(int num:nums){
+            left=Math.max(left,num);
+            right=right+num;
+        }
+         int result = right;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (canSplit(nums, k, mid)) {
+                result = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return result;
+    }
+    
+    private boolean canSplit(int[] nums, int k, int maxSum) {
+        int subarrayCount = 1;
+        int currentSum = 0;
+        
+        for (int num : nums) {
+            if (currentSum + num <= maxSum) {
+                currentSum += num;
+            } else {
+                subarrayCount++;
+                currentSum = num;
+            }
+        }
+        return subarrayCount <= k; 
+    }
+}
