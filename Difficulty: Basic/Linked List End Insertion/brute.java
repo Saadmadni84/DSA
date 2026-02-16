@@ -4,13 +4,10 @@ class Solution {
         if (head == null) {
             return newNode;
         }
-        
         Node curr = head;
         while (curr.next != null) { // Stop when the NEXT is null
             curr = curr.next;
         }
-        
-     
         curr.next = newNode;
         
         return head;
