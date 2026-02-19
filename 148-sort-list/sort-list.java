@@ -10,20 +10,28 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-     List<Integer> ls=new ArrayList<>();
-     ListNode curr=head;
-     while(curr!=null){
-        ls.add(curr.val);
-        curr=curr.next;
-     } 
-    Collections.sort(ls);
-     curr=head;
-     int i=0;
-     while(curr!=null){
-        curr.val=ls.get(i);
-        curr=curr.next;
-        i++;
-     }
-     return head; 
+        if (head == null || head.next == null) return head;
+        int count = 0;
+        ListNode curr = head;
+        while (curr != null) {
+            count++;
+            curr = curr.next;
+        }
+        int[] vals = new int[count];
+        curr = head;
+        for (int i = 0; i < count; i++) {
+            vals[i] = curr.val;
+            curr = curr.next;
+        }
+
+        Arrays.sort(vals);
+
+        curr = head;
+        for (int i = 0; i < count; i++) {
+            curr.val = vals[i];
+            curr = curr.next;
+        }
+
+        return head;
     }
 }
