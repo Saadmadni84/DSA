@@ -1,6 +1,7 @@
 class Solution {
     public ArrayList<ArrayList<Integer>> subsets(int nums[]) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
         generateSubsets(nums, 0, new ArrayList<>(), result);
         return result;
     }
