@@ -6,7 +6,7 @@ class Solution {
                           List<Set<Integer>> rows, List<Set<Integer>> cols, List<Set<Integer>> boxes) {
 
         if (board[row][col] != '.') {
-            // already filled digit
+          
             if (row == n - 1 && col == n - 1) {
                 isSudokuSolved = true;
                 return;
@@ -18,7 +18,7 @@ class Solution {
                 }
             }
         } else {
-            // cell is empty
+            
             for (int d = 1; d <= n; d++) {
 
                 if (rows.get(row).contains(d))
@@ -72,7 +72,7 @@ class Solution {
             boxes.add(new HashSet<Integer>());
         }
 
-        // Fill sets from existing board
+  
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 if (board[i][j] != '.') {
