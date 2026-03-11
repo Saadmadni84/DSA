@@ -17,15 +17,15 @@ class Solution {
     List<Integer> result = new ArrayList<>();
     
         public List<Integer> preorderTraversal(TreeNode root)  {
-        inorder(root);
+        preorder(root);
         return result;
     }
 
-    private void inorder(TreeNode node) {
+    private void preorder(TreeNode node) {
         if (node == null) return;
        
         result.add(node.val);
-        inorder(node.left);
-        inorder(node.right);
+        preorder(node.left);
+        preorder(node.right);
     }
 }
