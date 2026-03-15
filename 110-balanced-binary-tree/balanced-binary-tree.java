@@ -14,7 +14,6 @@
  * }
  */
 class Solution {
-    
     private int mdepth(TreeNode node) {
         if (node == null) return 0;
 
