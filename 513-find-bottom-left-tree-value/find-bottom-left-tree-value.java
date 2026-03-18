@@ -17,7 +17,6 @@ class Solution {
     public int findBottomLeftValue(TreeNode root) {
     Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
-        
         TreeNode current = null;
         while (!queue.isEmpty()) {
             current = queue.remove();
