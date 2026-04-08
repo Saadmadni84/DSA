@@ -23,6 +23,6 @@ class Solution {
         if(t==null || s==null || t.data!=s.data){
             return false;
         }
-        return helper(t.left,s.left)|| helper(t.right,s.right);
+        return helper(t.left,s.left) && helper(t.right,s.right);
     }
 }
