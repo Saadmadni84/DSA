@@ -1,8 +1,15 @@
-with cte AS
-(select num
-from MyNumbers 
-group by num
-having count(num)=1)
-
-select case when count(num)>0 then max(num) else null end AS num
-from cte 
+SELECT (
+    SELECT num 
+    FROM MyNumbers 
+    GROUP BY num 
+    HAVING COUNT(num) = 1 
+    ORDER BY num DESC 
+    LIMIT 1
+) AS num;
+#SELECT MAX(num) AS num
+#FROM (
+  #  SELECT num
+  #  FROM MyNumbers
+  #  GROUP BY num
+  #  HAVING COUNT(num) = 1
+#) AS single_numbers;)
