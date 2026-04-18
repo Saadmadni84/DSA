@@ -17,11 +17,8 @@ class Solution {
         }
 
         for (int i = start; i < a.length; i++) {
-
             if (i > start && a[i] == a[i - 1]) continue;
-
             if (sum + a[i] > target && a[i] >= 0) break;
-
             curr.add(a[i]);
             helper(a, i + 1, target, sum + a[i], curr, ls);
             curr.remove(curr.size() - 1);
