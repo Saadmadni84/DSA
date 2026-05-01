@@ -14,32 +14,20 @@
  * }
  */
 class Solution {
-   
+    int i = 0;
     public TreeNode bstFromPreorder(int[] preorder) {
-    TreeNode root=new TreeNode(preorder[0]);
+        return build(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    private TreeNode build(int[] preorder, int min, int max) {
+        if (i >= preorder.length) return null;
 
-    for(int i=1;i<preorder.length;i++){
-        helper(root,preorder[i]);
+        int val = preorder[i];
+        if (val < min || val > max) return null;
+        TreeNode root = new TreeNode(val);
+        i++;
+        root.left = build(preorder, min, val);
+        root.right = build(preorder, val, max);
+
+        return root;
     }
-    return root;
-    }
-    private void helper(TreeNode root,int val){
-        if(val<root.val){
-           if(root.left==null){
-            root.left=new TreeNode(val);
-           }
-           else{
-            helper(root.left,val);
-           }
-        }
-        else{
-            if(root.right==null){
-            root.right=new TreeNode(val);
-           }
-           else{
-            helper(root.right,val);
-           }
-        }
-    } 
-   
 }
