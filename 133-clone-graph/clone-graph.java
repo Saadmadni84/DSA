@@ -26,7 +26,6 @@ class Solution {
 
         for (Node neighbor : node.neighbors) {
             if (!mp.containsKey(neighbor)) {
-                // not cloned
                 newNode.neighbors.add(cloneUtil(neighbor, mp));
             } else {
                 newNode.neighbors.add(mp.get(neighbor));
@@ -35,11 +34,10 @@ class Solution {
 
         return newNode;
     }
-
     public Node cloneGraph(Node node) {
         if (node == null) return null;
 
-        HashMap<Node, Node> mp = new HashMap<>(); // old → new mapping
+        HashMap<Node, Node> mp = new HashMap<>();
         return cloneUtil(node, mp);
     }
 }
