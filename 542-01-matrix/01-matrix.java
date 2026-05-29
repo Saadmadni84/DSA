@@ -1,7 +1,7 @@
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
        int n =mat.length;
-       int m=mat[0].length;
+       int m =mat[0].length;
        boolean [][] vis=new boolean [n][m];
        int [][] dist=new int[n][m];
        Queue<int[]> q = new LinkedList<>();
@@ -11,7 +11,7 @@ class Solution {
                 q.add(new int []{i,j});
                 vis[i][j]=true;
             }
-        }
+         }
        }
     int[][] dirs = {{1,0},{-1,0},{0,1},{0,-1}};
     while(!q.isEmpty()){
