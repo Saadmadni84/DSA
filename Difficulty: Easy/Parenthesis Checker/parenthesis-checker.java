@@ -1,43 +1,20 @@
 class Solution {
     public boolean isBalanced(String s) {
-        Stack<Character> sp=new Stack<>();
-        char p;
-        for(int i=0;i<s.length();i++){
-            char c=s.charAt(i);
-            if(c=='{'){
-               sp.push('{');
-            }
-            else if(c=='['){
-                 sp.push('[');
-            }
-            else if(c=='('){
-                 sp.push('(');
-            }
-              else if(c == '}') {
-               
-                if (sp.isEmpty()) return false; 
-                p = sp.pop();
-                if (p != '{') {
-                    return false;
-                }
-            } else if(c == ']') {
-                
-                if (sp.isEmpty()) return false; 
-                p = sp.pop();
-                if (p != '[') {
-                    return false;
-                }
-            } else if(c == ')') { 
-                if (sp.isEmpty()) return false; 
-                p = sp.pop();
-                if (p != '(') {
-                    return false;
-                }
-            }
-        }
-        if(!sp.isEmpty()){
-            return false;
-        }
-        return true;
+        Stack<Character> st=new Stack();
+       for(char c:s.toCharArray()){
+           if(c=='('){
+               st.push(')');
+           }
+           else if(c=='{'){
+               st.push('}');
+           }
+           else if(c=='['){
+               st.push(']');
+           }
+           else if(st.isEmpty() || st.pop()!=c){
+               return false;
+           }
+       }
+       return st.isEmpty();
     }
 }
