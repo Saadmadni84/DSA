@@ -1,12 +1,17 @@
 class Solution {
     int maxSubarraySum(int[] arr) {
-        int maxSum = arr[0];
-        int currentSum = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            currentSum = Math.max(arr[i], currentSum + arr[i]);
-            maxSum = Math.max(maxSum, currentSum);
-        }
+      int maxs=arr[0];
+      int csum=0;
+      for(int i=0;i<arr.length;i++){
+          csum=csum+arr[i];
+          if(csum>maxs){
+              maxs=csum;
+          }
+          if(csum<0){
+              csum=0;
+          }
+      }
+      return maxs;
         
-        return maxSum;
     }
 }
