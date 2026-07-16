@@ -10,28 +10,39 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-        if(head==null){
-            return;
+      if (head == null || head.next == null) return;
+
+        ListNode slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-     ListNode curr=head;
-     List<Integer> ls=new ArrayList<>();
-     while(curr!=null){
-       ls.add(curr.val);
-       curr=curr.next;
-     }
-     int i=0,j=ls.size()-1;
-     curr = head;
-     while(i<=j){
-        if(i==j){
-             curr.val=ls.get(i);
-             break;
+
+        ListNode second = reverseList(slow.next);
+        slow.next = null; 
+
+        ListNode first = head;
+        while (second != null) {
+            ListNode tmp1 = first.next;
+            ListNode tmp2 = second.next;
+
+            first.next = second;
+            second.next = tmp1;
+
+            first = tmp1;
+            second = tmp2;
         }
-        curr.val=ls.get(i);
-        curr=curr.next;
-        curr.val=ls.get(j);
-        curr=curr.next;
-        i++;
-        j--;
-     }  
+    }
+
+    private ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
     }
 }
