@@ -21,7 +21,7 @@ class Solution {
         }
         ListNode prev=null;
         ListNode curr=slow.next;
-        slow.next = null;
+        slow.next = null;//to beak the cycle
         while(curr!=null){
             ListNode temp=curr.next;
             curr.next=prev;
