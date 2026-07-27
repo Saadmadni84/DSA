@@ -1,7 +1,6 @@
 
 class Solution {
     int[] memo; 
-
     public int minCostClimbingStairs(int[] cost) {
         memo = new int[cost.length];
         Arrays.fill(memo, -1);
@@ -16,7 +15,9 @@ class Solution {
         if (memo[i] != -1) {
             return memo[i];
         }
-        memo[i] = cost[i] + Math.min(helper(cost, i + 1), helper(cost, i + 2));
+        int p=helper(cost, i + 1)+cost[i];
+        int pp=helper(cost, i + 2)+cost[i];
+        memo[i] = Math.min(p,pp);
         
         return memo[i];
     }
