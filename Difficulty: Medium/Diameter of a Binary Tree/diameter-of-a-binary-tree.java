@@ -1,29 +1,29 @@
-/*
+/*Structure of binary tree Node
 class Node {
     int data;
     Node left;
     Node right;
     Node(int data) {
         this.data = data;
-        left = null;
-        right = null;
+        left = right = null;
     }
-} */
+};*/
 
 class Solution {
-    int mdia;
+    int m=0;
     public int diameter(Node root) {
-     helper(root);
-      return mdia;  
+       depth(root);
+       return m;
+        
     }
-    private int helper(Node node){
-        if(node==null){
+    private int depth(Node root){
+        if(root==null){
             return 0;
         }
-        int l=helper(node.left);
-        int r=helper(node.right);
+        int l=depth(root.left);
+        int r=depth(root.right);
         
-        mdia=Math.max(mdia,l+r);
+        m=Math.max(m,l+r);
         return 1+Math.max(l,r);
     }
 }
