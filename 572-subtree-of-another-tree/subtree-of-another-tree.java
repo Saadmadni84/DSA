@@ -20,15 +20,13 @@ class Solution {
         }
         Stack<TreeNode> s=new Stack<>();
         s.push(root);
-        while(!s.isEmpty()){
-              
+        while(!s.isEmpty()){    
               TreeNode node=s.pop();
               if (node.val == subroot.val) {
                 if (helper(node, subroot)) {
                     return true;
                 }
             }
-    
               if(node.right!=null){
                s.push(node.right);
               }
