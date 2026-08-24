@@ -5,15 +5,16 @@ class Solution {
        int i=0;
        int j=n-1;
        while(i<j){
-        int sum=Math.min(h[i],h[j])*(j-i);
-        if(sum>max){
-            max=sum;
+        int ch=Math.min(h[i],h[j]);
+        int a=ch*(j-i);
+        if(a>max){
+            max=a;
         }
-        if(h[i]>h[j]){
-            j--;
+        if(h[i]<h[j]){
+            i++;
         }
         else{
-            i++;
+            j--;
         }
        }
        return max;
