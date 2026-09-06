@@ -1,24 +1,17 @@
 class Solution {
     public int firstStableIndex(int[] nums, int k) {
-        PriorityQueue<Integer> p=new PriorityQueue<>();
-        for(int i=0;i<nums.length;i++){
-             p.add(nums[i]);
+        int n=nums.length;
+        int [] smin=new int[nums.length];
+        smin[n-1]=nums[n-1];
+        for(int i=n-2;i>=0;i--){
+            smin[i]=Math.min(smin[i+1],nums[i]);
         }
-        int l=0;
         int max=nums[0];
-        while(l<nums.length){
-            if(nums[l]>max){
-                max=nums[l];
-            }
-            int min = p.peek();
-            if(max-min<=k){
-                return l;
-            }
-          
-            p.remove(nums[l]);
-            l++;
-        
-
+        for(int i=0;i<n;i++){
+             max=Math.max(max,nums[i]);
+             if(max-smin[i]<=k){
+                return i;
+             }
         }
         return -1;
     }
