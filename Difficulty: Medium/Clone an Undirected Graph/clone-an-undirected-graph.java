@@ -1,5 +1,3 @@
-// User function Template for Java
-
 /*
     class Node{
         int val;
@@ -21,25 +19,25 @@
     }
 */
 class Solution {
-    Node cloneGraph(Node node) {
-          if (node == null) return null;
-
-        HashMap<Node, Node> mp = new HashMap<>();
-        return helper(node, mp);
+    public Node cloneGraph(Node node) {
+        if(node==null){
+            return null;
+        }
+      HashMap<Node,Node> mp=new HashMap<>();
+      return helper(node,mp);
         
     }
-    private Node helper(Node node, HashMap<Node, Node> mp) {
-        Node newNode = new Node(node.val);
-        mp.put(node, newNode);
-
-        for (Node neighbor : node.neighbors) {
-            if (!mp.containsKey(neighbor)) {
-                newNode.neighbors.add(helper(neighbor, mp));
-            } else {
-                newNode.neighbors.add(mp.get(neighbor));
-            }
+    private Node helper(Node node, HashMap<Node,Node> mp){
+        Node dup=new Node(node.val);
+        mp.put(node,dup);
+        for(Node nei: node.neighbors){
+             if(!mp.containsKey(nei)){
+                 dup.neighbors.add(helper(nei,mp));
+             }
+             else{
+                 dup.neighbors.add(mp.get(nei));
+             }
         }
-
-        return newNode;
+        return dup;
     }
 }
