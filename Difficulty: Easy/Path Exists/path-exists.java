@@ -1,26 +1,31 @@
 class Solution {
     public boolean checkPath(int V, int[][] edges, int src, int dest) {
-       Map<Integer,List<Integer>> graph=new HashMap<>();
-       for(int [] edge:edges){
-           int u=edge[0],v=edge[1];
-           graph.computeIfAbsent(u,value ->new ArrayList<>()).add(v);
-           graph.computeIfAbsent(v,value ->new ArrayList<>()).add(u);
+       List<Integer>[] graph = new ArrayList[V];
+               for (int i = 0; i < V; i++) {
+                   graph[i] = new ArrayList<>();
+               }
+
+               for (int[] edge : edges) {
+                   graph[edge[0]].add(edge[1]);
+                   graph[edge[1]].add(edge[0]);
+               }
+
+             
+               boolean[] vis = new boolean[V];
+               return dfs(graph, src, dest, vis);
+           }
+
+           private boolean dfs(List<Integer>[] graph, int curr, int dest, boolean[] vis) {
+               if (curr == dest) return true;
+               vis[curr] = true;
+
+               for (int neighbor : graph[curr]) {
+                   if (!vis[neighbor]) {
+                       if (dfs(graph, neighbor, dest, vis)) {
+                           return true;
+                       }
+                   }
+               }
+               return false;
+           }
        }
-       boolean [] vis=new boolean[V];
-       return dfs(graph,src,dest,vis,V);
-        
-    }
-    private boolean dfs(Map<Integer,List<Integer>> graph,int s,int d,boolean [] vis,int n){
-        if(s==d){
-            return true;
-        }
-        vis[s]=true;
-       for(int nb:graph.getOrDefault(s, new ArrayList<>())){
-           if (!vis[nb]) {
-                if (dfs(graph, nb, d, vis, n))
-                    return true;
-            }
-       }
-       return false;
-    }
-}
