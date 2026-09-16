@@ -6,6 +6,9 @@ class Solution {
         if(i>max){
             return false;
         }
+        if(max==n-1){
+            return true;
+        }
         if(arr[i]+i>max){
             max=arr[i]+i;
         }
