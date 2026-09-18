@@ -5,8 +5,7 @@ class Solution {
        int j=1;
        while(j<pr.length){
         if(pr[i]<pr[j]){
-            p=p+pr[j]-pr[i];
-           
+           p=p+pr[j]-pr[i]; 
         }
          i++;
          j++;
