@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
     public int[][] insert(int[][] arr, int[] ni) {
         List<int[]> ls = new ArrayList<>();
