@@ -14,37 +14,43 @@
  * }
  */
 class Solution {
+    TreeNode ans;
 
     public TreeNode lcaDeepestLeaves(TreeNode root) {
-        return dfs(root).node;
+        int maxDepth = getDepth(root);
+
+        findLCA(root, 1, maxDepth);
+
+        return ans;
     }
 
-    private Result dfs(TreeNode root) {
+    private int getDepth(TreeNode root) {
         if (root == null) {
-            return new Result(null, 0);
+            return 0;
         }
 
-        Result left = dfs(root.left);
-        Result right = dfs(root.right);
-
-        if (left.depth == right.depth) {
-            return new Result(root, left.depth + 1);
-        }
-
-        if (left.depth > right.depth) {
-            return new Result(left.node, left.depth + 1);
-        }
-
-        return new Result(right.node, right.depth + 1);
+        return 1 + Math.max(
+            getDepth(root.left),
+            getDepth(root.right)
+        );
     }
 
-    static class Result {
-        TreeNode node;
-        int depth;
-
-        Result(TreeNode node, int depth) {
-            this.node = node;
-            this.depth = depth;
+    private int findLCA(TreeNode root, int depth, int maxDepth) {
+        if (root == null) {
+            return -1;
         }
+        if (depth == maxDepth) {
+            ans = root;
+            return depth;
+        }
+
+        int left = findLCA(root.left, depth + 1, maxDepth);
+        int right = findLCA(root.right, depth + 1, maxDepth);
+
+        if (left == maxDepth && right == maxDepth) {
+            ans = root;
+        }
+
+        return Math.max(left, right);
     }
 }
